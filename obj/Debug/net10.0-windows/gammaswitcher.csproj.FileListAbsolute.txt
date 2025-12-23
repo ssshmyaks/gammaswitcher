@@ -1,0 +1,17 @@
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\gammaswitcher.Form1.resources
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\gammaswitcher.csproj.GenerateResource.cache
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\gammaswitcher.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\gammaswitcher.AssemblyInfoInputs.cache
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\gammaswitcher.AssemblyInfo.cs
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\gammaswitcher.csproj.CoreCompileInputs.cache
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\bin\Debug\net10.0-windows\gammaswitcher.exe
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\bin\Debug\net10.0-windows\gammaswitcher.deps.json
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\bin\Debug\net10.0-windows\gammaswitcher.runtimeconfig.json
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\bin\Debug\net10.0-windows\gammaswitcher.dll
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\bin\Debug\net10.0-windows\gammaswitcher.pdb
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\gammaswitcher.Program.resources
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\gammaswitcher.dll
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\refint\gammaswitcher.dll
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\gammaswitcher.pdb
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\gammaswitcher.genruntimeconfig.cache
+C:\Users\super\source\repos\gammaswitcher\gammaswitcher\obj\Debug\net10.0-windows\ref\gammaswitcher.dll
