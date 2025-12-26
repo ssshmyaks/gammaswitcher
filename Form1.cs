@@ -81,7 +81,7 @@ namespace gammaswitcher
             _gammaOn = !_gammaOn;
             Ramp r = _gammaOn ? _brightRamp : _normalRamp;
             SetDeviceGammaRamp(_hdc, ref r);
-
+            
             if (trayIconStatic != null)
                 trayIconStatic.Text = "Gamma: " + (_gammaOn ? "ON" : "OFF");
         }
@@ -164,11 +164,18 @@ namespace gammaswitcher
         {
             _hdc = GetDC(IntPtr.Zero);
             _normalRamp = MakeRamp(1.0f);
-            _brightRamp = MakeRamp(2.5f);
+            _brightRamp = MakeRamp(4f);
             SetDeviceGammaRamp(_hdc, ref _normalRamp);
             _proc = HookCallback;
-            _hookID = SetWindowsHookEx(WH_KEYBOARD_LL, _proc, GetModuleHandle("user32.dll"), 0);
+            // Для WH_KEYBOARD_LL используйте IntPtr.Zero вместо GetModuleHandle
+            _hookID = SetWindowsHookEx(WH_KEYBOARD_LL, _proc, IntPtr.Zero, 0);
+
+            if (_hookID == IntPtr.Zero)
+            {
+                MessageBox.Show("Failed to install hook! Error: " + Marshal.GetLastWin32Error());
+            }
         }
+
 
         private Ramp MakeRamp(float g)
         {
@@ -190,11 +197,18 @@ namespace gammaswitcher
 
         private void OnExit(object? s, EventArgs e)
         {
-            UnhookWindowsHookEx(_hookID);
-            ReleaseDC(IntPtr.Zero, _hdc);
+            if (_hookID != IntPtr.Zero)
+            {
+                UnhookWindowsHookEx(_hookID);
+            }
+            if (_hdc != IntPtr.Zero)
+            {
+                ReleaseDC(IntPtr.Zero, _hdc);
+            }
             trayIconInstance.Visible = false;
             Application.Exit();
         }
+
 
         protected override void SetVisibleCore(bool value)
         {
@@ -244,7 +258,7 @@ namespace gammaswitcher
 
         private void OnKey(object? s, KeyEventArgs e)
         {
-            if (e.KeyCode != Keys.None && e.KeyCode != Keys.ControlKey &&
+            if (e.KeyCode != Keys.None && e.KeyCode != Keys.ControlKey && 
                 e.KeyCode != Keys.ShiftKey && e.KeyCode != Keys.Alt)
             {
                 Selected = (int)e.KeyCode;
