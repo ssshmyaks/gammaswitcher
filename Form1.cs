@@ -49,7 +49,7 @@ namespace gammaswitcher
         private static extern IntPtr CallNextHookEx(IntPtr hhk, int nCode, IntPtr wParam, IntPtr lParam);
 
         [DllImport("kernel32.dll")]
-        private static extern IntPtr GetModuleHandle(string lpModuleName);
+        private static extern IntPtr GetModuleHandle(string? lpModuleName);
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetDC(IntPtr hwnd);
@@ -81,8 +81,8 @@ namespace gammaswitcher
             _gammaOn = !_gammaOn;
             Ramp r = _gammaOn ? _brightRamp : _normalRamp;
             SetDeviceGammaRamp(_hdc, ref r);
-            
-            if (trayIconStatic != null)
+
+            if (trayIconStatic is not null)
                 trayIconStatic.Text = "Gamma: " + (_gammaOn ? "ON" : "OFF");
         }
 
@@ -92,9 +92,9 @@ namespace gammaswitcher
             LoadConfig();
             InitTray();
             InitGamma();
-            WindowState = FormWindowState.Minimized;
-            ShowInTaskbar = false;
-            Visible = false;
+            this.WindowState = FormWindowState.Minimized;
+            this.ShowInTaskbar = false;
+            this.Visible = false;
         }
 
         private void LoadConfig()
@@ -175,7 +175,6 @@ namespace gammaswitcher
             }
         }
 
-
         private Ramp MakeRamp(float g)
         {
             Ramp r = new Ramp
@@ -197,17 +196,12 @@ namespace gammaswitcher
         private void OnExit(object? s, EventArgs e)
         {
             if (_hookID != IntPtr.Zero)
-            {
                 UnhookWindowsHookEx(_hookID);
-            }
             if (_hdc != IntPtr.Zero)
-            {
                 ReleaseDC(IntPtr.Zero, _hdc);
-            }
             trayIconInstance.Visible = false;
             Application.Exit();
         }
-
 
         protected override void SetVisibleCore(bool value)
         {
@@ -223,12 +217,12 @@ namespace gammaswitcher
         public KeySelector(int current)
         {
             Selected = current;
-            Text = "Set Key";
-            Size = new Size(300, 150);
-            StartPosition = FormStartPosition.CenterScreen;
-            FormBorderStyle = FormBorderStyle.FixedDialog;
-            MaximizeBox = false;
-            MinimizeBox = false;
+            this.Text = "Set Key";
+            this.Size = new Size(300, 150);
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.FormBorderStyle = FormBorderStyle.FixedDialog;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
 
             lbl = new Label
             {
@@ -247,22 +241,22 @@ namespace gammaswitcher
                 Size = new Size(80, 30)
             };
 
-            Controls.Add(lbl);
-            Controls.Add(btn);
-            CancelButton = btn;
+            this.Controls.Add(lbl);
+            this.Controls.Add(btn);
+            this.CancelButton = btn;
 
-            KeyPreview = true;
-            KeyDown += OnKey;
+            this.KeyPreview = true;
+            this.KeyDown += OnKey;
         }
 
         private void OnKey(object? s, KeyEventArgs e)
         {
-            if (e.KeyCode != Keys.None && e.KeyCode != Keys.ControlKey && 
+            if (e.KeyCode != Keys.None && e.KeyCode != Keys.ControlKey &&
                 e.KeyCode != Keys.ShiftKey && e.KeyCode != Keys.Alt)
             {
                 Selected = (int)e.KeyCode;
-                DialogResult = DialogResult.OK;
-                Close();
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
     }
