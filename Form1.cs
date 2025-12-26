@@ -167,7 +167,6 @@ namespace gammaswitcher
             _brightRamp = MakeRamp(4f);
             SetDeviceGammaRamp(_hdc, ref _normalRamp);
             _proc = HookCallback;
-            // Для WH_KEYBOARD_LL используйте IntPtr.Zero вместо GetModuleHandle
             _hookID = SetWindowsHookEx(WH_KEYBOARD_LL, _proc, IntPtr.Zero, 0);
 
             if (_hookID == IntPtr.Zero)
